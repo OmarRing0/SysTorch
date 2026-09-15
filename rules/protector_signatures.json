@@ -1,0 +1,48 @@
+{
+  "_comment": "Known packer/protector signatures. Extend without touching Python source. For anything requiring real byte-pattern matching at scale, drop .yar files in rules/yara/ instead -- YARA will always be more accurate than hand-rolled Python string checks.",
+  "section_names": {
+    "UPX": ["UPX0", "UPX1", "UPX2", "UPX!"],
+    "ASPack": [".aspack", ".adata"],
+    "PECompact": ["PEC2", "PECompact2"],
+    "Themida / WinLicense": [".themida", ".taggant", ".winlice"],
+    "VMProtect": [".vmp0", ".vmp1", ".vmp2", ".vmp"],
+    "Enigma Protector": [".enigma1", ".enigma2"],
+    "ASProtect": [".aspr"],
+    "MPRESS": [".MPRESS1", ".MPRESS2"],
+    "NsPack": [".nsp0", ".nsp1", ".nsp2"],
+    "Petite": [".petite"],
+    "SVKP": [".svkp"],
+    "RLPack": [".rlpack"],
+    "yoda's Protector": [".y0da"]
+  },
+  "import_dlls": {
+    "WIBU CodeMeter / AxProtector": [
+      "wibucm32.dll", "wibucm64.dll", "cmdll32.dll", "wibucmnet.dll",
+      "axengine32.dll", "axengine64.dll", "axprotector.dll"
+    ],
+    "VMProtect (runtime)": ["vmprotectsdk32.dll", "vmprotectsdk64.dll"],
+    "Denuvo (runtime helper)": ["denuvo64.dll", "denuvo32.dll"],
+    ".NET Reactor": ["dotnetreactor.dll"]
+  },
+  "string_markers": {
+    "VMProtect": ["vmprotect"],
+    "Themida / WinLicense": ["themida", "winlicense", "oreans"],
+    "Denuvo": ["denuvo"],
+    "Enigma Protector": ["enigma protector"],
+    "Armadillo": ["armadillo"],
+    "ASProtect": ["asprotect"],
+    "WIBU CodeMeter / AxProtector": ["wibu-systems", "codemeter", "axprotector", "wibucm"],
+    ".NET Reactor": [".net reactor"],
+    "ConfuserEx": ["confuserex", "confuser"],
+    "SecuROM": ["securom"],
+    "UPX": ["upx!", "upx0", "upx1"]
+  },
+  "entry_point_signatures": [
+    {
+      "name": "UPX (or UPX-derived stub)",
+      "confidence": "MEDIUM",
+      "bytes_hex": "60be",
+      "note": "PUSHAD; MOV ESI, imm32 -- the standard 32-bit UPX stub prologue"
+    }
+  ]
+}
