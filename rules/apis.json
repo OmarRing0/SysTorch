@@ -1,0 +1,159 @@
+{
+  "_comment": "Suspicious API categories and their difficulty-score weights. Edit this file to add new APIs (e.g. modern BCrypt/CryptGenRandom calls) without touching Python source.",
+  "categories": {
+    "Networking": {
+      "weight": 0.25,
+      "apis": [
+        "WSAStartup", "WSACleanup", "socket", "bind", "listen", "accept",
+        "connect", "recv", "send", "WSASocket", "WSAConnect", "WSASend", "WSARecv",
+        "InternetOpenA", "InternetOpenW", "InternetConnectA", "InternetConnectW",
+        "HttpOpenRequestA", "HttpOpenRequestW", "HttpSendRequestA", "HttpSendRequestW",
+        "URLDownloadToFileA", "URLDownloadToFileW", "WinINetGetProxyForUrl"
+      ]
+    },
+    "Persistence": {
+      "weight": 0.8,
+      "apis": [
+        "RegCreateKeyEx", "RegCreateKeyExA", "RegCreateKeyExW", "RegOpenKeyEx",
+        "RegOpenKeyExA", "RegOpenKeyExW", "RegSetValueEx", "RegSetValueExA",
+        "RegSetValueExW", "RegDeleteKeyEx", "RegGetValue", "RegGetValueA", "RegGetValueW",
+        "GetTempPathA", "GetTempPathW", "CopyFileA", "CopyFileW", "CreateFileA",
+        "CreateFileW", "WriteFile", "ReadFile", "OpenSCManagerA", "OpenSCManagerW",
+        "CreateServiceA", "CreateServiceW", "StartServiceCtrlDispatcher",
+        "StartServiceA", "StartServiceW", "ChangeServiceConfigA", "ChangeServiceConfigW"
+      ]
+    },
+    "Encryption": {
+      "weight": 0.9,
+      "apis": [
+        "CryptAcquireContextA", "CryptAcquireContextW", "CryptGenKey", "CryptDeriveKey",
+        "CryptEncrypt", "CryptDecrypt", "CryptReleaseContext", "CryptCreateHash",
+        "CryptHashData", "CryptGetHashParam", "CryptGenRandom",
+        "BCryptGenerateSymmetricKey", "BCryptEncrypt", "BCryptDecrypt", "BCryptGenRandom",
+        "BCryptOpenAlgorithmProvider", "BCryptDeriveKeyPBKDF2",
+        "EVP_EncryptInit", "EVP_EncryptUpdate", "EVP_EncryptFinal",
+        "EVP_DecryptInit", "EVP_DecryptUpdate", "EVP_DecryptFinal",
+        "AES_encrypt", "AES_decrypt", "MD5", "SHA1", "SHA256"
+      ]
+    },
+    "Anti-Analysis/VM Detection": {
+      "weight": 1.1,
+      "apis": [
+        "IsDebuggerPresent", "CheckRemoteDebuggerPresent", "GetSystemInfo",
+        "GlobalMemoryStatusEx", "GetVersion", "GetVersionExA", "GetVersionExW",
+        "CreateToolhelp32Snapshot", "Process32FirstW", "Process32NextW",
+        "SetUnhandledExceptionFilter", "BeingDebugged", "NtQueryInformationProcess",
+        "GetTickCount", "GetTickCount64", "QueryPerformanceCounter"
+      ]
+    },
+    "Dynamic Loading": {
+      "weight": 0.25,
+      "apis": [
+        "GetModuleHandleA", "GetModuleHandleW", "LoadLibraryA", "LoadLibraryW",
+        "LoadLibraryExA", "LoadLibraryExW", "GetProcAddress", "FreeLibrary",
+        "GetModuleFileNameA", "GetModuleFileNameW"
+      ]
+    },
+    "Process Discovery & Enumeration": {
+      "weight": 0.25,
+      "apis": [
+        "GetCurrentThreadId", "GetCurrentProcessId", "EnumProcesses", "Process32FirstW",
+        "Process32NextW", "OpenProcessToken", "GetTokenInformation", "EnumServicesStatusEx",
+        "CreateToolhelp32Snapshot", "Module32FirstW", "Module32NextW"
+      ]
+    },
+    "Memory Inspection & Evasion": {
+      "weight": 0.9,
+      "apis": [
+        "ReadProcessMemory", "WriteProcessMemory", "NtReadVirtualMemory",
+        "NtWriteVirtualMemory", "VirtualAllocEx", "VirtualFreeEx", "VirtualProtectEx"
+      ]
+    },
+    "Process Injection & Code Execution": {
+      "weight": 1.4,
+      "apis": [
+        "CreateRemoteThread", "NtCreateThreadEx", "NtUnmapViewOfSection",
+        "QueueUserAPC", "SetWindowsHookExA", "SetWindowsHookExW", "CreateProcessA",
+        "CreateProcessW", "CreateProcessInternalA", "CreateProcessInternalW"
+      ]
+    },
+    "Privilege Escalation": {
+      "weight": 1.1,
+      "apis": [
+        "OpenProcessToken", "AdjustTokenPrivileges", "DuplicateTokenEx",
+        "DuplicateToken", "ImpersonateLoggedOnUser", "RevertToSelf"
+      ]
+    },
+    "Hooking & Keylogging": {
+      "weight": 0.25,
+      "apis": [
+        "SetWindowsHookExA", "SetWindowsHookExW", "GetAsyncKeyState",
+        "GetKeyState", "GetForegroundWindow", "GetWindowTextA", "GetWindowTextW"
+      ]
+    },
+    "Stealth & Code Injection": {
+      "weight": 1.4,
+      "apis": [
+        "VirtualAlloc", "VirtualProtect", "VirtualAllocEx", "VirtualProtectEx",
+        "WriteProcessMemory", "CreateRemoteThread", "NtUnmapViewOfSection",
+        "QueueUserAPC"
+      ]
+    },
+    "Process & Thread Manipulation": {
+      "weight": 0.25,
+      "apis": [
+        "CreateProcessA", "CreateProcessW", "ShellExecuteA", "ShellExecuteW", "WinExec",
+        "ResumeThread", "SuspendThread", "TerminateThread", "TerminateProcess",
+        "NtResumeThread", "NtSuspendThread"
+      ]
+    },
+    "File System Operations": {
+      "weight": 0.25,
+      "apis": [
+        "CreateFileA", "CreateFileW", "ReadFile", "WriteFile", "DeleteFileA",
+        "DeleteFileW", "CopyFileA", "CopyFileW", "MoveFileA", "MoveFileW",
+        "FindFirstFileA", "FindFirstFileW", "FindNextFileA", "FindNextFileW",
+        "GetFileAttributesA", "GetFileAttributesW", "SetFileAttributesA", "SetFileAttributesW"
+      ]
+    },
+    "Registry Operations": {
+      "weight": 0.25,
+      "apis": [
+        "RegCreateKeyA", "RegCreateKeyW", "RegOpenKeyA", "RegOpenKeyW",
+        "RegQueryValueA", "RegQueryValueW", "RegQueryValueExA", "RegQueryValueExW",
+        "RegSetValueA", "RegSetValueW", "RegDeleteKeyA", "RegDeleteKeyW",
+        "RegEnumKeyA", "RegEnumKeyW"
+      ]
+    },
+    "Miscellaneous Suspicious": {
+      "weight": 0.25,
+      "apis": [
+        "system", "ShellExecute", "WinExec", "malloc", "free", "strlen",
+        "strcpy", "sprintf", "printf", "exit", "_exit", "abort", "memcpy", "memmove"
+      ]
+    }
+  },
+  "antidebug_apis": [
+    "IsDebuggerPresent", "CheckRemoteDebuggerPresent", "GetSystemInfo",
+    "GlobalMemoryStatusEx", "GetVersion", "GetVersionExA", "GetVersionExW",
+    "CreateToolhelp32Snapshot", "Process32FirstW", "Process32NextW",
+    "SetUnhandledExceptionFilter", "BeingDebugged", "NtQueryInformationProcess",
+    "GetTickCount", "GetTickCount64", "QueryPerformanceCounter"
+  ],
+  "crypto_apis": {
+    "windows_crypto": [
+      "CryptAcquireContextA", "CryptAcquireContextW", "CryptGenKey", "CryptDeriveKey",
+      "CryptEncrypt", "CryptDecrypt", "CryptReleaseContext", "CryptCreateHash",
+      "CryptHashData", "CryptGetHashParam", "CryptGenRandom"
+    ],
+    "cng_bcrypt": [
+      "BCryptGenerateSymmetricKey", "BCryptEncrypt", "BCryptDecrypt", "BCryptGenRandom",
+      "BCryptOpenAlgorithmProvider", "BCryptDeriveKeyPBKDF2"
+    ],
+    "openssl": [
+      "EVP_EncryptInit", "EVP_EncryptUpdate", "EVP_EncryptFinal",
+      "EVP_DecryptInit", "EVP_DecryptUpdate", "EVP_DecryptFinal",
+      "AES_encrypt", "AES_decrypt", "MD5", "SHA1", "SHA256"
+    ]
+  }
+}

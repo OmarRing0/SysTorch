@@ -1,0 +1,16 @@
+{
+  "_comment": "Maps internal behavior-pattern/finding names to MITRE ATT&CK technique IDs. Extend as needed -- this is intentionally a small, defensible subset rather than an exhaustive mapping.",
+  "Ransomware-style file encryption": "T1486 - Data Encrypted for Impact",
+  "Process injection / remote code execution": "T1055 - Process Injection",
+  "Network command-and-control pattern": "T1071 - Application Layer Protocol (C2)",
+  "Keylogging / input capture": "T1056.001 - Input Capture: Keylogging",
+  "Analysis evasion": "T1622 - Debugger Evasion",
+  "Privilege escalation attempt": "T1134 - Access Token Manipulation",
+  "Persistence mechanism": "T1547 - Boot or Logon Autostart Execution / T1543 - Create or Modify System Process",
+  "Anti-debugging techniques detected": "T1622 - Debugger Evasion",
+  "TLS callback": "T1055.001 - Process Injection: Dynamic-link Library Injection (early execution via TLS callback)",
+  "Import table evasion": "T1027.007 - Obfuscated Files or Information: Dynamic API Resolution",
+  "String obfuscation": "T1027 - Obfuscated Files or Information",
+  "Known packer/protector": "T1027.002 - Obfuscated Files or Information: Software Packing",
+  "Embedded binary": "T1027.009 - Embedded Payloads"
+}
